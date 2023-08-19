@@ -87,6 +87,7 @@ But it is very untidy, and it's getting harder to understand the code.
 And when we load the page again we will see an error in the console telling us: **Uncaught ReferenceError: React is not defined**, so, the order of the files are always in sequence.
 
 **We have this structure:**
+
 <body>
     <div id="root">
         <h1>Ricardo is here!</h1>
@@ -113,7 +114,8 @@ const parent = React.createElement('div', { id: 'parent' },
 It will get replaced by our parent in App.js. We can see that happen when we reload and reload the page. For a few milliseconds 'Ricardo is here!' will be loaded in our browser, but then it gets replaced by our parent. So, whatever we pass in to our render method, will replace whaterver is inside our div with the id of root.
 What happens is that first of all our browser reads the HTML, so it will print Ricardo is here! in the browser, but as soon as we go to our script it will load React, then the ReactDOM, and then our script whose src is App.js (so it will start loading), and finally when we reach the render method it will render the parent inside our root. 
 
-**Now, we have this other structure**
+**Now, we have this other structure:**
+
 <body>
     <h1>Top</h1>
     <div id="root">
