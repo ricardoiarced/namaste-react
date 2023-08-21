@@ -94,6 +94,8 @@ Examples with the three possible scenarios:
 
 - Let's take another example like loading Google's analytics script and another analytics script which are modular, so, they are independent from our code. In that case make sense to use the 'async' attribute and not to use 'defer', otherwise is better to use 'defer' attribute because it maintains the order in which the scripts are executed.
 
+link: https://www.youtube.com/watch?v=IrHmpdORLu8&ab_channel=AkshaySaini
+
 ## What happens when we insert the CDN links in our code?
 Well, now our browser understands React. And now if we head over to our index.html file and open it in our web browser, go to dev tools, and open the console, and write React, we can see a huge object called React (And inside, a lot of methods we can use now).
 
