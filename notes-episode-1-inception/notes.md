@@ -1,30 +1,116 @@
-# What is CDN?
+# Namaste React - Episode 1
+
+## Theory
+
+## What is Emmet?
+Emmet is a plugin for many popular text editors which greatly improves HTML & CSS workflow. It gives you the power to use short expressions to generate HTML markup, and CSS.
+link: https://medium.com/@kartik2406/web-development-with-vs-code-part-1-emmet-6af80f0f630c
+
+## What is CDN?
 CDN stands for content delivery network, and it is a geographically distributed group of servers that caches content close to end users. A CDN allows for the quick transfer of assets needed for loading Internet content, including HTML pages, JavaScript files, stylesheets, images, and videos.
+links: https://www.cloudflare.com/learning/cdn/what-is-a-cdn/
+https://www.akamai.com/glossary/what-is-a-cdn#:~:text=The%20mission%20of%20a%20CDN,load%20error%20or%20time%2Dout.
 
-Related to react, CDN is a place where the react library is hosted. We're just fetching the react library and put it in out code using CDN links
+Related to react, CDN is a place where the react library is hosted. We're just fetching the react library and put it in our code using CDN links.
 
-# Why do we use CDN?
+## Difference between a Library and Framework?
+A library can be applied (work independently) to one small portion of a page. A framework requires to create a whole app, but a library can work in our existing apps as well.
 
+## Why do we use CDN?
+To reduce latency which can delay your experience when trying to access a web page or video stream before it fully loads on your device.
+link: https://www.akamai.com/glossary/what-is-a-cdn#:~:text=The%20mission%20of%20a%20CDN,load%20error%20or%20time%2Dout.
 
-# What happens when we insert the CDN links in our code?
+## Why is React known as React?
+React is a JavaScript library for building user interfaces. It was developed by Facebook, and the name “React” was chosen because it is meant to help developers build user interfaces that are fast and responsive, or “reactive.” The library was designed to “react” to changes in data.
+link: https://medium.com/@dhawalpandya/why-is-react-called-react-92f83b10aeac
+
+## what is cross-origin in the script tag?
+The crossorigin attribute sets the mode of the request to an HTTP CORS Request.
+
+Web pages often make requests to load resources on other servers. Here is where CORS comes in.
+
+A cross-origin request is a request for a resource (e.g. style sheets, iframes, images, fonts, or scripts) from another domain.
+
+CORS is used to manage cross-origin requests.
+
+There are two values that we can use with crossorigin
+
+- anonymous or crossorigin (is the same as crossorigin="") - A cross-origin request is perfomrmed. No credentials are sent.
+
+- use-credentials - A cross-origin request is performed. Credentials are sent (e.g. a cookie, a certificate, a HTTP Basic authentication)
+
+In our code we're not sending any credentials:
+```html
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+```
+link: https://www.w3schools.com/tags/att_script_crossorigin.asp
+https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin
+
+## what is the difference between React and ReactDOM?
+React is the JavaScript library to build web Applications, and ReactDOM is the JavaScript library (bridge) between React and the DOM, so it allows React to intereact with the DOM.
+
+## What is the difference between react.development.js and react.production.js files via CDN?
+react.development.js is suited when you're developing your app, and the react.production.js file is best suited for production as it is minified and optimized for it.
+link: https://legacy.reactjs.org/docs/cdn-links.html
+
+## What are async and defer?
+async and defer are boolean attributes which are used along with script tags to load the external scripts efficiently into our web page.
+
+When you load a web page there are two major things happening in our browser:
+1. The first one is the HTML parsing.
+2. The second is the loading of the script.
+
+The loading of the script can break down into two main things:
+1. Fetching the script from the network.
+2. Execute the script line by line.
+
+Examples with the three possible scenarios:
+                ```html
+                <script src=""></script>
+                ```
+- HTML parsing - O---------O                    O---------O
+- script -                 O---------OO---------O   
+1. First scenario: Our browser is parsing the HTML and suddenly encounters a script tag on certain point 'O', then the parsing stops at that point in time, fetchs the script from the network to get it into the browser and executes the script, then, after the script is fully executed the HTML parsing will continue to execute. This is not a good scenario.
+
+                ```html
+                <script async src=""></script>
+                ```
+- HTML parsing - O---------O    O---------O
+- script -             O---OO---O
+
+2. Second scenario (Using async attribute): While the HTML parsing is happening our script tag with the async attribute is being fetched (by the browser) from the network (src we specified) asynchronously (in parallel), then, HTML parsing stops and the script starts executing, and once the script is executed the HTML parsing continues executing again.
+
+                ```html
+                <script async src=""></script>
+                ```
+- HTML parsing - O------------------O
+- script -             O---O        O---O
+
+3. Third scenario (Using defer attribute): In this case, the HTML parsing starts executing as well as the script tag is being fetch in parallel from the network but here the script tag is executed once the HTML parsing is completed
+
+- After selecting one of those three sceneraios to our project we should note one important thing: the 'async' attribute does not guarantee the execution of the scripts but 'defer' does. What does that mean? If you were to put async attributes in multiple scripts that depend on one another does not guarantee the execution of the scripts in a particular order, that might brake your code, in that case you should use 'defer'.
+
+- Let's take another example like loading Google's analytics script and another analytics script which are modular, so, they are independent from our code. In that case make sense to use the 'async' attribute and not to use 'defer', otherwise is better to use 'defer' attribute because it maintains the order in which the scripts are executed.
+
+## What happens when we insert the CDN links in our code?
 Well, now our browser understands React. And now if we head over to our index.html file and open it in our web browser, go to dev tools, and open the console, and write React, we can see a huge object called React (And inside, a lot of methods we can use now).
 
-# What is the attribute crossorigin inside the script element of the CDN?
-
-# When we go to the source inside the CDN link with the description of react, what does the link take us to?
+## When we go to the source inside the CDN link with the description of react, what does the link take us to?
 Well, the link take us to a page where there is a lot of code written. Basically, JavaScript code, and that's because, React is a JavaScript library (The source code of React, all code of React in one file). When we put the CDN links we now got React to our project.
 
-# Who is writing the code of React?
+## Who is writing the code of React?
 Some Facebook (Meta) developers like you and me.
 
-# Now, the other link from the other CDN link with the description of react-dom, what does the link take us to?
-This take us to the React library which is useful for DOM operations, so, to modify the DOM (Builds the bridge between React and the DOM).
+## Now, the other link from the other CDN link with the description of react-dom, what does the link take us to?
+This takes us to the JavaScript library which is useful for DOM operations, so, to modify the DOM (Builds the bridge between React and the DOM).
 
-# Why do we have two links that take us to two separate files?
+## Why do we have two links that take us to two separate files?
 That's because React does not only work in browsers. It works in phones as React Native, and other things as well. Therefore there are different types of functions or methods which are being used in different places like phones, browsers, and so on. That's why we have two files.
 
-# How do we log to the console Hello World using React?
-
+## How do we log to the console Hello World using React?
+```html
 <body>
     <div id="root">
     </div>
@@ -36,13 +122,14 @@ That's because React does not only work in browsers. It works in phones as React
         root.render(heading);
     </script>
 </body>
+```
 
 So here React.createElement is creating an object, and we need to convert it to an h1 and put it into the DOM, so we need to create the root for it, so, in the next line, we create the root with ReactDOM.createRoot (We created a root for our React library). The last part is to use render, which basically takes the object that was generated from the heading, and convert it to a heading element, and put it into the DOM, so we can see it in our browser. The {} inside React.createElement is the place where you will give attributes to your elements, and the last parameter is where you put the children of that element.
 
-# Do you know what is the most expensive operation inside of a browser in a web page?
+## Do you know what is the most expensive operation inside of a browser in a web page?
 When we do manual pages interactive. When we modify the DOM (When the DOM tree is changed, putting and removing some nodes from the DOM, that is the most costly operation). All the frameworks and libraries try to optimize this, and React comes with a filosofy that whenever you need to do anything on a web page do it using javascript, and that's why React give us those helper functions to make things work in a very perormant way.
 
-# What happens if we use console.log to our heading?
+## What happens if we use console.log to our heading?
 We'll see an object in the console, and it is because at the end of the day is a React element (The heading is a React element), and a React element is nothing but a normal JavaScript object. Also the heading that we logged has something known as props, and props are children + attributes that we pass in. In this case our children would be 'Hello World from React!' and our props would be the id. But in the console those two are wrapped together by an object.
 
 **We have this structure:**
@@ -52,7 +139,7 @@ const parent = React.createElement('div', { id: 'parent' },
         React.createElement('h1', {}, 'I\'m an h1 tag'))
 );
 ```
-# How can we add a sibling element h2 where our h1 is located?
+## How can we add a sibling element h2 where our h1 is located?
 We need to create an array of childrens like this:
 
 ```javascript
@@ -65,7 +152,7 @@ const parent = React.createElement('div', { id: 'parent' },
 When we do this, we'll be able to see our h2 tag in our page but React will throw an error to the console: **Warning: Each child in a list should have a unique "key" prop.**
 
 **We can make a more complicated structure like this:**
-```javascript
+```js
 const parent = React.createElement('div', { id: 'parent' },
     [React.createElement('div', { id: 'child' },
         [React.createElement('h1', {}, 'I\'m an h1 tag'), React.createElement('h2', {}, 'I\'m an h2 tag')]
@@ -131,5 +218,3 @@ What happens is that first of all our browser reads the HTML, so it will print R
 We will get our two h1 elements, one in the top of our div with the id of root, and also the other one below our same div.
 ![Ejemplo](./Screenshot%202023-08-18%20210833.png)
 So React only renders in our root that we specified in our App.js inside our root, and other portions of HTML works the same. This is why we call React a library also. We call React as a library because React can be applied (work independently)to one small portion of a page. A framework requires to create a whole app, but React can work in our existing apps as well
-
-
