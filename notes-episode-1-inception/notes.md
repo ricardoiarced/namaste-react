@@ -222,6 +222,7 @@ And when we load the page again we will see an error in the console telling us: 
 
 ### We have this structure
 
+```html 
 <body>
     <div id="root">
         <h1>Ricardo is here!</h1>
@@ -230,6 +231,7 @@ And when we load the page again we will see an error in the console telling us: 
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="./App.js"></script>
 </body>
+```
 
 **And in our App.js we have:**
 
