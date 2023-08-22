@@ -81,7 +81,6 @@ React is the JavaScript library to build web Applications, and ReactDOM is the J
 ### What is the difference between react.development.js and react.production.js files via CDN?
 
 react.development.js is suited when you're developing your app, and the react.production.js file is best suited for production as it is minified and optimized for it.
-link: https://legacy.reactjs.org/docs/cdn-links.html
 
 ### What are async and defer?
 
@@ -288,5 +287,7 @@ So React only renders in our root that we specified in our App.js inside our roo
 - [crossorigin 2](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 - [crossorigin 3](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin)
+
+- [react.development.js and react.production.js](https://legacy.reactjs.org/docs/cdn-links.html)
 
 - [async and defer](https://www.youtube.com/watch?v=IrHmpdORLu8&ab_channel=AkshaySaini)
