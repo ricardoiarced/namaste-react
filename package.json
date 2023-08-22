@@ -1,0 +1,16 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "This is Namaste React by Ricardo Arce",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/Rakiit/namaste-react.git)"
+  },
+  "keywords": [],
+  "author": "Ricardo Arce",
+  "license": "ISC"
+}
