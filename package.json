@@ -12,5 +12,8 @@
   },
   "keywords": [],
   "author": "Ricardo Arce",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
 }
