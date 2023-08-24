@@ -137,4 +137,12 @@ A lot of them, Parcel has its own package.json file and its dependencies as well
 
 ### Should we put the node_modules folder to production or Github?
 
-The answer is no. The best practice is to put the folder inside a .gitignore file.
+The answer is no. The best practice is to put the folder inside a .gitignore file. This is because since we will have our package.json and package-lock.json files, we can regenerate our node_modules folder by typing: npm install.
+
+### Should we put the package.json and the package-lock.json files into Github?
+
+The answer is yes. It is beacuse they maintain a node or a snapshot of what dependencies our project needs.
+
+### command to ignite our app with Parcel?
+
+npx parcel index.html
