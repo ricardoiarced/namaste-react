@@ -2,7 +2,6 @@
   "name": "namaste-react",
   "version": "1.0.0",
   "description": "This is Namaste React by Ricardo Arce",
-  "main": "App.js",
   "scripts": {
     "test": "jest"
   },
@@ -13,7 +12,15 @@
   "keywords": [],
   "author": "Ricardo Arce",
   "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "parcel": "^2.9.3"
-  }
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

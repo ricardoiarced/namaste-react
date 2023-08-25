@@ -145,4 +145,85 @@ The answer is yes. It is beacuse they maintain a node or a snapshot of what depe
 
 ### command to ignite our app with Parcel?
 
-npx parcel index.html
+npx parcel index.html. It generates a build development of our project and put that build into our dist folder, and it will host our app on http://localhost:1234 or port 1234. So the code that we will see in our dev environment will be the one that is inside the dist folder now :D.
+
+### What is npx?
+
+Similar as npm we has something called npx, and npx means executing a package. In this case we told Parcel to execute and we put our src, in this case was index.html to serve as an entry point for our web application. Parcel uses this file to build and bundle our application, then starts a development server to host our bundled application and provides a local URL.
+
+### It is a good way to bring React into our project through CDN links? Why?
+
+Is not a good way to bring it to our project. And it is because fetching from CDN links we need to make a call to where the library or package is hosted, and it brings a lot of performance concerns. The best way is to intall it through npm and not waste time making extra calls to bring it to our project (It will get installed in our node_modules). A second thing is that through CDN links we will have to change the version manually when a new version has been realeased, so, it's better to have it inside our package.json file where is easier to manage all dependencies including React.
+
+**Once we installed React and ReactDOM in our project, to actually start using it we need to import it to our file**
+
+### What means the path at the end of the import?
+
+That path it is referring to our react that is inside our node_modules folder, so it is making a link to use it in our app.
+
+### will we be able to use React once we imported our modules to our app and initialized Parcel?
+
+No, Parcel will throw an error telling us that **Browser cannot have imports or exports**, and that is because our script whose name is App.js is treated as a browser script, and treats it as a normal JavaScript file which is not. Therefore it cannot understand what is the import where we imported our modules. That's why we need to tell our browser that the App.js file is a module
+
+**Now our console will throw an error because we're using createRoot from react-dom and not from react-dom/client. Now, we need to use react-dom/client to use createRoot because this is different from the CDN link.
+
+### What parcel does?
+
+- Dev build
+- Local server
+- HMR = Hot Module Replacement - When we make changes into our code and save the file Parcel automatically reloads the page, so we can see our changes instantly (that's known as Hot Module Replacement)
+- Parcel uses a watching file algorithm - This algorithm is written in C++. So it keeps an eye on all your files, and as soon as you make a change and save your app Parcel will reload the page.
+- Caching - Faster builds (gives you faster builds). When you save the app the terminal shows you the time that was passed to build the app, and you might be wondering why it is so fast? It is beacuse Parcel is caching things for you inside the .parcel-cache folder in form of binary files so that the next build is ready faster.
+- Image optimization.
+- Minification of our file when creating a production build.
+- Bundling.
+- Compressing.
+- Consistent hashing.
+- Code splitting.
+- Differential bundling - Means that supports different versions of browsers (support old browsers).
+- Diagnostics behind the scenes.
+- Error handling (throws errors beautifully).
+- Https - Let's suppose we want to test something that only works on HTTPS, Parcel gives you those features also.
+- Tree shaking algorithm - Suppose we have hundreds of functions in our code, but we're just using four or five functions, so Parcel will remove unused code for you.
+- Creates different dev and production bundles.
+
+So, React is not the only thing that's making your app fast. Parcel too (bundlers in general) :D.
+
+Parcel is not doing everything by itself, it also needs to manage its own dependencies to act and make your app fast as you can see :D.
+
+### What happens if we execute npx parcel build index.html and we haven't modified anything in our package.json?
+
+Parcel will throw an error saying Target "main" declares an output file path of "App.js" (our app) which does not match the compiled bundle type "html". 
+
+So we will need to remove the property called main in our package.json file because Parcel get a conflict with that.
+
+Npm chose that path as the main path to our entry point, but when we use Parcel, we tell Parcel that the entry point is index.html.
+
+And once we have done it, It generates a build for production of our project and put that build into our dist folder, so we can deliver that app to our users.
+
+### What happens when we execute npx parcel build index.html (a build production ready app) ?
+
+It will bundle, minify and a lot of things more and it will put all the new files inside the dist folder.
+
+### Do we need to put our dist and .parcel-cache folders into our github repository? What will happen with our server when it is time to deploy our app? Is it going to has our build for production if we don't include those folders?
+
+No, we don't need to push our folders to github because we can get those folders again by executing npx parcel build index.html or npx parcel index.html either for production or development. So in our server we can execute that command, and we will have our folders ready to deploy the app.
+
+### How can we make compatible our app for old versions of browsers?
+
+We need to use broserslist, but we need to tell it for what versions of browsers we need to support the app to. Browserslist is an npm package, and it needs some configuration, so, we head over to [Browserslist page](browserslist.dev)
+and we can select for example in the search bar the last 2 versions of all browsers and it will give you the overall browser coverage. It dependes on you what percentage of coverage you want to have for your app. For a government website you will need to make your app work for maybe 99% of the overall browser coverage. It depends of your needs. So, let's work with the last 2 versions of all browsers which is 69% just to not have a lot of code and keep our app lighter.
+
+To configure browserslist we'll need to write something in your package.json file: 
+
+```json
+ "browserslist": [
+    "last 2 versions"
+  ]
+```
+
+And now our app will work for the last 2 versions of all browsers. And this means that it will work at a 100%. For the other percentage that we didn't take into account it might work or not.
+
+if we click on query composition it will take us to browserslist's repository and there you can see how to configure to function for 99.5% of the US people. So you can configure broserslist based on countries.
+
+After all of this we have created our own create react app.
