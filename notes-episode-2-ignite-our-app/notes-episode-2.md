@@ -4,6 +4,8 @@
 
 - [Theory](#theory)
     - [Arrow functions](#arrow-functions)
+    - [What is 'NPM'](#what-is-npm)
+    - [What is 'Parcel/Webpack'? Why do we need one of those?]()
 
 ## Theory
 
@@ -28,15 +30,67 @@ me.hello(); // Window object {}
 ```
 We can use them in callback functions
 
+### What is NPM?
+
+Npm is not node package manager but anything else, NPM does not have a full form. NPM manages packages behind the scenes but does not stand for Node Package Manager. NPM is a standard repository for all the packages, any package you need to include in your project you can use NPM. All the packages are hosted there. In their official website it says that it is a recursive bacronymic abbreviation for 'npm is not an acronym'
+
 ### What do you need to do before pushing your code to production?
 
 Basically you will need to do bundling, code splitting, chunking, image optimization, removing comments, minifying the code, compressing the code; you'll need to do a lot of things.
 
+### What is 'Parcel/Webpack'? Why do we need one of those?
+
+Parcel/Webpack is a bundler that optimizes our app during development and for production also.
+
+- Dev server: Parcel includes a development server.
+- HTTPS: If you run Parcel with the --https flag, it will generate you a certificate. For example, you may need to use a certain hostname for authentication cookies, or debug mixed content issues.
+- Hot reloading: Whenever you make a change, Parcel automatically updates your code in the browser.
+- HMR (Hot Module Replacement): Parcel updates modules in the browser at the same time it is executing without refreshing the page. So, that way the application state can be held as you change small things in your code. For example if you make changes on CSS, those changes are applied via HMR.
+If you're not using a framework like React or Vue that supports HMR, you can use this piece of code for example in JavaScript to be able to use HMR.
+
+```js
+if (module.hot) {
+  module.hot.accept();
+}
+```
+You will be using the module.hot API to use the HMR functionality.
+
+- Development target: When we are using the dev server, only a single target can be built at once. By default, Parcel uses a development target that supports modern browsers. This means that transpilation (The process of converting the code to other versions of the same language) of modern JavaScript versions for older browsers is disabled. So if we need to test in a older browser, you can provide the --target CLI option to choose which of your targets to build.
+
+- Lazy mode: If we are in development and our app is huge and has many pages it can be frustrating sometimes the need to wait until the build is ready and the server starts up. You can tell Parcel by executing the --lazy flag that you want it to defer building files until they are requested in the browser, so, you can reduce the build times. The server will start immediately and when you navigate to a page from your app Parcel will be building the files necessary for that page only.
+
+- Caching: Parcel caches everything. If you restart the dev server, Parcel will only rebuild the files you make changes on since the last time it ran. Parcel tracks all of the files, configurations, plugins, and dev dependencies that are inside your build, and thoroughly invalidates the cache when something changes. For example if you change a configuration file, all source files that rely on that configuration will be rebuilt.
+
+- API proxy: Parcel has a built-in API proxy, which can help simulate your production environment. You can specify paths that should be proxied to another server maybe your real API server or a local testing server. You can use a .proxyrc file.
+
+```json
+{
+   "/api": {
+    "target": "http://localhost:8000/",
+    "pathRewrite": {
+      "^/api": ""
+    }
+   }
+}
+```
+
+This example would cause (http://localhost:1234/api/endpoint) to be proxied to (http://localhost:8000/endpoint).
+
+- File watcher: This helps the caching making it very fast. So, whenever a change is made, Parcel watches every file in your project root including node_modules, and based on events and metadata from these files, Parcel knows which files need to be rebuilt. The watcher is written in C++;
+
+- Auto install: When you use a language or plugin that isn't included by default, Parcel will automatically install the necessary dependencies into your project for you. For example, if you include a .sass file, Parcel will install the @parcel/transformer-sass plugin. You will see a message in the terminal, and the new dependency will be added to the devDependencies in your package.json
+
+- Diagnostics: Parcel will give you beautiful diagnostics when you make an error in your code.
+
+- Parcel's JavaScript compiler, CSS transformer, and source maps implementation are written in Rust for maximum performance.
+
+**Automatic production optimization**
+
+- Tree shaking: Parcel removes everything that's not used in your code, and supports both ES modules and CommonJS.
+
+- Minification: Parcel in
+
 **When you create a react app it has all the superpowers, so, it is already ignited, it creates schedule for you, it gives you a basic react app which is already production ready.**
-
-### What is NPM?
-
-Npm is not node package manager but anything else, NPM does not have a full form. NPM manages packages behind the scenes but does not stand for Node Package Manager. NPM is a standard repository for all the packages, any package you need to include in your project you can use NPM. All the packages are hosted there.
 
 ### What can we do to get NPM into our project?
 

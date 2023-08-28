@@ -95,27 +95,26 @@ The loading of the script can break down into two main things:
 2. Execute the script line by line.
 
 Examples with the three possible scenarios:
-                ```html
-                <script src=""></script>
-                ```
-- HTML parsing - O---------O                    O---------O
-- script -                 O---------OO---------O   
+
+```html
+<script src=""></script>
+```
+ ![First scenario](/notes-episode-1-inception/Without%20an%20attribute.png)
+
 1. First scenario: Our browser is parsing the HTML and suddenly encounters a script tag on certain point 'O', then the parsing stops at that point in time, fetchs the script from the network to get it into the browser and executes the script, then, after the script is fully executed the HTML parsing will continue to execute. This is not a good scenario.
 
-                ```html
-                <script async src=""></script>
-                ```
-- HTML parsing - O---------O    O---------O
-- script -             O---OO---O
+ ```html
+<script async src=""></script>
+```
 
+![Second scenario](/notes-episode-1-inception/Using%20'async'%20attribute.png)
 2. Second scenario (Using async attribute): While the HTML parsing is happening our script tag with the async attribute is being fetched (by the browser) from the network (src we specified) asynchronously (in parallel), then, HTML parsing stops and the script starts executing, and once the script is executed the HTML parsing continues executing again.
 
-                ```html
-                <script async src=""></script>
-                ```
-O------------------O - HTML parsing 
-      O---O        O---O - script 
------fetching-----executing-
+```html
+<script async src=""></script>
+```
+
+![Third scenario](/notes-episode-1-inception/Using%20'defer'%20attribute.png)
 
 3. Third scenario (Using defer attribute): In this case, the HTML parsing starts executing as well as the script tag is being fetch in parallel from the network but here the script tag is executed once the HTML parsing is completed
 
