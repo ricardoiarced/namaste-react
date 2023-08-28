@@ -279,7 +279,7 @@ So React only renders in our root that we specified in our App.js inside our roo
 
 - [CDN 2](https://www.akamai.com/glossary/what-is-a-cdn#:~:text=The%20mission%20of%20a%20CDN,load%20error%20or%20time%2Dout)
 
-- [React] (https://medium.com/@dhawalpandya/why-is-react-called-react-92f83b10aeac)
+- [React](https://medium.com/@dhawalpandya/why-is-react-called-react-92f83b10aeac)
 
 - [crossorigin 1](https://www.w3schools.com/tags/att_script_crossorigin.asp)
 
