@@ -5,7 +5,7 @@
 - [Theory](#theory)
     - [Arrow functions](#arrow-functions)
     - [What is 'NPM'](#what-is-npm)
-    - [What is 'Parcel/Webpack'? Why do we need one of those?]()
+    - [What is 'Parcel/Webpack'? Why do we need one of those?](#what-is-parcelwebpack-why-do-we-need-one-of-those)
 
 ## Theory
 
@@ -86,9 +86,13 @@ This example would cause (http://localhost:1234/api/endpoint) to be proxied to (
 
 **Automatic production optimization**
 
-- Tree shaking: Parcel removes everything that's not used in your code, and supports both ES modules and CommonJS.
+- Tree shaking: Parcel removes everything that's not used in your code by analyzing the imports and exports of each module, and supports both ES modules and CommonJS. This is also called dead code elimination.
 
-- Minification: Parcel in
+- Minification: Parcel includes minifiers for JavaScript, CSS, HTML, and SVG to reduce the file size of your output bundles by removing whitespace, renaming variables to shorter names, and many other optimizations. You just need to run:
+
+```
+parcel build index.html
+```
 
 **When you create a react app it has all the superpowers, so, it is already ignited, it creates schedule for you, it gives you a basic react app which is already production ready.**
 
