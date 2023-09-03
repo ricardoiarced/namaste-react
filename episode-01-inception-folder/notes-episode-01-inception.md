@@ -12,7 +12,7 @@
     - [what is the difference between React and ReactDOM?](#what-is-the-difference-between-react-and-reactdom)
     - [What is the difference between react.development.js and react.production.js files via CDN?](#what-is-the-difference-between-reactdevelopmentjs-and-reactproductionjs-files-via-cdn)
     - [What are async and defer?](#what-are-async-and-defer)
-- [Notes](#notes-taken-in-the-first-episode)
+- [Notes](#notes-from-episode-01---inception)
     - [What happens when we insert the CDN links in our code?](#what-happens-when-we-insert-the-cdn-links-in-our-code)
     - [When we go to the source inside the CDN link with the description of react, what does the link take us to?](#when-we-go-to-the-source-inside-the-cdn-link-with-the-description-of-react-what-does-the-link-take-us-to)
     - [Who is writing the code of React?](#who-is-writing-the-code-of-react)
@@ -122,7 +122,7 @@ Examples with the three possible scenarios:
 
 - Let's take another example like loading Google's analytics script and another analytics script which are modular, so, they are independent from our code. In that case make sense to use the 'async' attribute and not to use 'defer', otherwise is better to use 'defer' attribute because it maintains the order in which the scripts are executed.
 
-## Notes taken in the first episode
+## Notes from Episode 01 - Inception
 
 ### What happens when we insert the CDN links in our code?
 
@@ -271,7 +271,7 @@ We will get our two h1 elements, one in the top of our div with the id of root, 
 ![Ejemplo](./Screenshot%202023-08-18%20210833.png)
 So React only renders in our root that we specified in our App.js inside our root, and other portions of HTML works the same. This is why we call React a library also. We call React as a library because React can be applied (work independently)to one small portion of a page. A framework requires to create a whole app, but React can work in our existing apps as well
 
-### Useful resources
+## Useful resources
 
 - [Emmet](https://medium.com/@kartik2406/web-development-with-vs-code-part-1-emmet-6af80f0f630c)
 

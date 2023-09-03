@@ -19,6 +19,33 @@
     - [What is the 'dist' folder?](#what-is-the-dist-folder)
     - [What is 'browserlists'](#what-is-browserlists)
 - [Notes from episode 02 - Ignite Our App](#notes-from-episode-02---ignite-our-app)
+    - [What do you need to do before pushing your code to production?](#what-do-you-need-to-do-before-pushing-your-code-to-production)
+    - [What can we do to get NPM into our project?](#what-can-we-do-to-get-npm-into-our-project)
+    - [What is a package.json file?](#what-is-a-packagejson-file)
+    - [Why do we need a package.json file?](#why-do-we-need-a-packagejson-file)
+    - [What is the most important package that we need to install in our project?](#what-is-the-most-important-package-that-we-need-to-install-in-our-project)
+    - [What kind of dependencies an app can have?](#what-kind-of-dependencies-an-app-can-have)
+    - [How can we install parcel in our project as a dev dependency?](#how-can-we-install-parcel-in-our-project-as-a-dev-dependency)
+    - [What is the diference between the caret (^) and tilde (~) symbol inside of our package.json file?](#what-is-the-difference-between-the-caret--and-tilde--symbol-inside-of-our-packagejson-file)
+    - [What is safe to put? The caret or the tilde symbol?](#what-is-safe-to-put-the-caret-or-the-tilde-symbol)
+    - [What is the package-lock.json?](#what-is-the-package-lockjson)
+    - [You might have heard of why your project is running locally but not in production?](#you-might-have-heard-of-why-your-project-is-running-locally-but-not-in-production)
+    - [What contains the node_modules folder?](#what-contains-the-node_modules-folder)
+    - [Why when we installed Parcel into our project, inside node_modules we have more folders than just Parcel?](#why-when-we-installed-parcel-into-our-project-inside-node_modules-we-have-more-folders-than-just-parcel)
+    - [When we install Parcel how many package.json files do we have now?](#when-we-install-parcel-how-many-packagejson-files-do-we-have-now)
+    - [Should we put the node_modules folder to production or Github?](#should-we-put-the-node_modules-folder-to-production-or-github)
+    - [Should we put the package.json and the package-lock.json files into Github?](#should-we-put-the-packagejson-and-the-package-lockjson-files-into-github)
+    - [command to ignite our app with Parcel?](#command-to-ignite-our-app-with-parcel)
+    - [What is npx?](#what-is-npx-notes)
+    - [It is a good way to bring React into our project through CDN links? Why?](#it-is-a-good-way-to-bring-react-into-our-project-through-cdn-links-why)
+    - [What means the path at the end of the import?](#what-means-the-path-at-the-end-of-the-import)
+    - [will we be able to use React once we imported our modules to our app and initialized Parcel?](#will-we-be-able-to-use-react-once-we-imported-our-modules-to-our-app-and-initialized-parcel)
+    - [What parcel does?](#what-parcel-does)
+    - [What happens if we execute npx parcel build index.html and we haven't modified anything in our package.json?](#what-happens-if-we-execute-npx-parcel-build-indexhtml-and-we-havent-modified-anything-in-our-packagejson)
+    - [What happens when we execute npx parcel build index.html (a build production ready app)?](#what-happens-when-we-execute-npx-parcel-build-indexhtml-a-build-production-ready-app)
+    - [Do we need to put our dist and .parcel-cache folders into our github repository? What will happen with our server when it is time to deploy our app? Is it going to has our build for production if we don't include those folders?](#do-we-need-to-put-our-dist-and-parcel-cache-folders-into-our-github-repository-what-will-happen-with-our-server-when-it-is-time-to-deploy-our-app-is-it-going-to-has-our-build-for-production-if-we-dont-include-those-folders)
+    - [How can we make compatible our app for old versions of browsers?](#how-can-we-make-compatible-our-app-for-old-versions-of-browsers)
+- [Useful resources](#useful-resources)
 
 ## Theory
 
@@ -381,9 +408,13 @@ When we use the create react app behind the scenes uses webpack.
 
 ### How can we install parcel in our project as a dev dependency?
 
-**By typing: npm install -D parcel**
+**By typing:** 
 
-### What is the diference between the caret (^) and tilde (~) symbol inside of our package.json file?
+```
+npm install -D parcel
+```
+
+### What is the difference between the caret (^) and tilde (~) symbol inside of our package.json file?
 
 ```json
 {
@@ -463,7 +494,7 @@ The answer is yes. It is beacuse they maintain a node or a snapshot of what depe
 
 npx parcel index.html. It generates a build development of our project and put that build into our dist folder, and it will host our app on http://localhost:1234 or port 1234. So the code that we will see in our dev environment will be the one that is inside the dist folder now :D.
 
-### What is npx?
+### What is npx (notes)?
 
 Similar as npm we have something called npx, and npx means executing a package. In this case we told Parcel to execute and we put our src, in this case was index.html to serve as an entry point for our web application. Parcel uses this file to build and bundle our application, then starts a development server to host our bundled application and provides a local URL.
 
@@ -517,7 +548,7 @@ Npm chose that path as the main path to our entry point, but when we use Parcel,
 
 And once we have done it, It generates a build for production of our project and put that build into our dist folder, so we can deliver that app to our users.
 
-### What happens when we execute npx parcel build index.html (a build production ready app) ?
+### What happens when we execute npx parcel build index.html (a build production ready app)?
 
 It will bundle, minify and a lot of things more and it will put all the new files inside the dist folder.
 
@@ -543,3 +574,11 @@ And now our app will work for the last 2 versions of all browsers. And this mean
 if we click on query composition it will take us to browserslist's repository and there you can see how to configure to function for 99.5% of the US people. So you can configure broserslist based on countries.
 
 After all of this we have created our own create react app.
+
+## Useful resources
+
+- [Parcel](https://parceljs.org/)
+
+- [Dependencies](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencie)
+
+- [browserlist](https://stackoverflow.com/questions/55510405/what-is-the-significance-of-browserslist-in-package-json-created-by-create-react)
