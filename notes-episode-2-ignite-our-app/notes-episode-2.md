@@ -6,6 +6,19 @@
     - [Arrow functions](#arrow-functions)
     - [What is 'NPM'](#what-is-npm)
     - [What is 'Parcel/Webpack'? Why do we need one of those?](#what-is-parcelwebpack-why-do-we-need-one-of-those)
+    - [What is '.parcel-cache'](#what-is-parcel-cache)
+    - [What is 'npx'?](#what-is-npx)
+    - [what is difference between 'dependencies' vs 'devDependencies'](#what-is-difference-between-dependencies-vs-devdependencies)
+    - [What is Tree Shaking?](#what-is-tree-shaking)
+    - [What is Hot Module Replacement?](#what-is-hot-module-replacement)
+    - [5 favourite superpowers of Parcel](#list-down-your-favorite-5-superpowers-of-parcel-and-describe-any-3-of-them-in-your-own-words)
+    - [What is '.gitignote'? What should we add and not add into it?](#what-is-gitignore-what-should-we-add-and-not-add-into-it)
+    - [What is the difference between 'package.json' and 'package-lock.json'?](#what-is-the-difference-between-packagejson-and-package-lockjson)
+    - [Why should I not modify 'package-lock.json'?](#why-should-i-not-modify-package-lockjson)
+    - [What is 'node_modules'? Is it a good idea to push that on git?](#what-is-node_modules-is-it-a-good-idea-to-push-that-on-git)
+    - [What is the 'dist' folder?](#what-is-the-dist-folder)
+    - [What is 'browserlists'](#what-is-browserlists)
+- [Notes from episode 02 - Ignite Our App](#notes-from-episode-02---ignite-our-app)
 
 ## Theory
 
@@ -17,6 +30,12 @@
 
 2. Binding with this keyword: When you use the this keyword inside a method and you return it, and then you call the object with the method attached to it, you will get the Window object (The global object). We can say that it is bound to the surrounding scope where the function expression is. It is referring to the window object.
 
+We can use them in callback functions
+
+**Where we shouldn't use them?**
+
+1. We shouldn't be using arrow functions inside objects as methods. specially if we use the 'this' keyword inside of the function.
+
 **Example:**
 ```js
 const me = {
@@ -25,18 +44,125 @@ const me = {
         return this;
     }
 }
-
 me.hello(); // Window object {}
 ```
-We can use them in callback functions
 
-### What is NPM?
+Another example:
+
+**Example:**
+```js
+const me = {
+    name: 'Ricardo',
+    hello: function() {
+        return this;
+    },
+    arrowHello: () => {
+      return this;
+    }
+}
+me.hello(); // me object
+me.arrowHello(); // Window object
+```
+
+The previous example is the same as having:
+
+**Example:**
+```js
+const me = {
+    name: 'Ricardo',
+    hello: function() {
+        return this;
+    },
+    arrowHello: this,
+}
+me.hello(); // me object
+me.arrowHello(); // Window object
+```
+
+2. Functions added to a prototype.
+
+**Example:**
+
+```js
+function Person(n) {
+  this.name = n
+}
+```
+
+**We can add methods to the prototype object like this:**
+
+```js
+Person.prototype.hello = function() {
+  return this;
+}
+
+Person.prototype.arrowHello = () => {
+  return this;
+}
+```
+
+**And if we create an object based on what we've done:**
+```js
+const me = new Person('Ricardo');
+me.hello(); // Person {name: 'Ricardo'}
+me.arrowHello(); // Window {}
+```
+
+So, for the function we got our Person object and for our arrow function we got the window object. **What is this happening?**
+
+This is happening because of the same reason as the object method. The arrow function doesn't create its own execution context, so, it uses the this keyword outside its scope.
+
+3. Constructor dunctions.
+
+**Example:**
+
+```js
+const Person = () => {
+
+}
+const me = new Person();
+```
+
+We will get an error like this: Uncaught TypeError: Person is not a constructor.
+
+4. Event handlers (Callback functions with their own this keyword).
+
+```js
+const button = document.querySelector("#myButton");
+button.addEventListener("click", () => {
+  // 'this' won't refer to the button element here
+  console.log(this);
+});
+
+```
+
+So, we will get the Window object every time we click the button. And that's because of the behavior of the arrow function with the this keyword. If we were to use a function, the result would be our button. Since we're using an addEventListener function, it automatically binds the this keyword to the element we attached it to. But the arrow function as an event handler is looking for the outer scope keyword and that's the Window object.
+
+**How can we get advantage of this behavior?**
+
+On callback functions
+
+**example:**
+
+```js
+const me = {
+  name: 'Ricardo',
+  hello() {
+    setTimeout(() => {
+      console.log(this.name);
+    }, 100)
+  }
+}
+me.hello();
+```
+So this is telling us that if we call the hello method, after 100 milliseconds log the this.name variable. After 100 milliseconds we will get Ricardo printed in the console. So, what's happening? Well since we're calling the hello function, it executes the arrow function inside the setTimeout method, and since the arrow function doesn't have a binding for the this keyword, it will go to the outer scope to set the binding of the this keyword for the arrow function. In this case Ricardo will be printed to the console.
+
+
+
+### What is 'NPM'?
 
 Npm is not node package manager but anything else, NPM does not have a full form. NPM manages packages behind the scenes but does not stand for Node Package Manager. NPM is a standard repository for all the packages, any package you need to include in your project you can use NPM. All the packages are hosted there. In their official website it says that it is a recursive bacronymic abbreviation for 'npm is not an acronym'
 
-### What do you need to do before pushing your code to production?
-
-Basically you will need to do bundling, code splitting, chunking, image optimization, removing comments, minifying the code, compressing the code; you'll need to do a lot of things.
 
 ### What is 'Parcel/Webpack'? Why do we need one of those?
 
@@ -65,7 +191,7 @@ You will be using the module.hot API to use the HMR functionality.
 
 ```json
 {
-   "/api": {
+  "/api": {
     "target": "http://localhost:8000/",
     "pathRewrite": {
       "^/api": ""
@@ -93,6 +219,138 @@ This example would cause (http://localhost:1234/api/endpoint) to be proxied to (
 ```
 parcel build index.html
 ```
+
+And your app will be optimized.
+
+- Image optimization: Parcel optimizes, converts, and resizes your images but you need to pass query parameters for the format and size you need when referencing the image file in your HTML, CSS, JavaScript.
+
+The query parameters you can use are:
+  
+  - width - The width to resize the image to
+  - height - The height to resize the image to
+  - quality - The image quality percentage you want, for example ?**quality=75**
+  - as - File format to convert the image to, for example: **?as=webp**
+
+Image formats:
+  
+  - jpeg/jpg
+  - png
+  - webp
+  - avif
+
+- Compression: Parcel can compress your app before deploy using Gzip and Brotli. This way reduces the time needed to transfer scripts to the server is reduced (over the network).
+
+- Code Splitting: When multiple parts of your application depend on the same common modules, they are automatically deduplicated into separate bundles. This allows commonly used dependencies to be loaded in parallel with your application code and cached separately by the browser. Therefore resulting in smaller initial bundle sizes and faster load times.
+
+- Content hashing: Parcel automatically includes content hashes in the names of all output files. This enables long-term browser caching, because the output is guaranteed not to change unless the name does.
+
+- Bundle manifests: Parcel uses a manifest in each entry bundle to avoid the cascading invalidation problem in many cases. This manifest includes a mapping of stable bundle ids to final content hashed filenames. When one bundle needs to reference another, it uses the bundle id rather than the content hashed name improving the cache hit rate across deployments.
+
+- Transpilation: Parcel transpiles your JavaScript and CSS for your target browsers automatically! You just need to declare a browserslist in your package.json, and if you need more advanced custom transforms, Parcel also supports babel to do it automatically.
+
+- Differential bundling: When you use 
+
+```html
+<script type="module">
+```
+
+Parcel automatically generates a nonmodule fallback for old browsers as well, depending on your browser targets.
+
+- Workers: Parcel has built in support for web workers, service workers, and worklets, which allow moving work to a different thread.
+
+  - Web workers: They allow you to run arbitrary CPU-heavy work in a background thread to avoid blocking the user interface.
+
+  - Service workers: Run in the background and provide features like offline caching, background sync, and push notifications.
+
+  - worklets: Let you hook into low level aspects of the rendering process or audio processing pipeline in the browser.
+
+- Libraries: Parcel can build libraries for multiple targets at once (ES module, legace CommonJS module, and a TypeScript definition file).
+
+### What is '.parcel-cache'?
+
+It is the folder that stores binary files when parcel caches something in our app, ensuring faster builds the next time you make a change and save the file.
+
+### What is 'npx'?
+
+It is a tool for executing packages. You can execute packages installed locally and you can execute packages which weren't previously installed.
+
+### What is difference between 'dependencies' vs 'devDependencies'?
+
+Dependencies are only required to run, devDependencies only to develop, e.g.: unit tests, CoffeeScript to JavaScript transpilation, minification, etc. PeerDependencies is referred to the fact that we can have multiple versions of the dependency and it's simply installed inside the node_modules of the dependency.
+
+### What is Tree Shaking?
+
+When Parcel removes unnecessary code that's not being used to run the app, and it does that automatically for you.
+
+### What is Hot Module Replacement?
+
+When Parcel updates modules in the browser at the same time it is executing without reloading the page. So, that way the application state can be preserved as you change small things in your code (CSS changes for example).
+
+### List down your favorite 5 superpowers of Parcel and describe any 3 of them in your own words
+
+- Hot Module Replacement: Whenever a change you make to your code Parcel will apply the change in the browser without reloading the page.
+
+- Tree Shaking: Parcel removes code that is not being used in your app.
+
+- Caching: Parcel does caching for you to have faster builds in your app and at the same time is tracking all your files so when you restart the server it builds the files you made changes on the last time it ran.
+
+- Minification
+
+- Code Splitting
+
+### What is '.gitignore'? What should we add and not add into it?
+
+.gitignore is a folder that tells Git what folders you don't want to push to your repository. We should add everything that can be reinstalled or recovered just by hitting npm install and in the case of Parcel you will need to execute the command
+
+```
+npx parcel index.html
+```
+
+or 
+
+```
+npx parcel build index.html
+```
+
+to get the dist and the .parcel-cache folders.
+
+### What is the difference between 'package.json' and 'package-lock.json'?
+
+package.json is a metadata file that contains information about your project, including its name, version, description, main file, scripts, dependencies, and more. While package-lock.json is an automatically generated file that keeps track of the exact versions of all dependencies and sub-dependencies installed in the project. It ensures that the project uses the same versions of dependencies across different environments.
+
+### Why should I not modify 'package-lock.json'?
+
+Because it keeps track of all tree of version dependencies, and if you were to modify it, may lead to dependency conflicts or unexpected behavior. It considered a bad practice.
+
+### What is 'node_modules'? Is it a good idea to push that on git?
+
+It is a folder where modules and packages are installed when we use the npm to manage our project's dependencies. And is not a good idea because we can recover that folder by executing npm install, so, the npm will install the dependencies listed inside the package.json file.
+
+### What is the 'dist' folder?
+
+Is the folder that is generated when we execute either this command of Parcel:
+
+```
+npx parcel index.html
+```
+
+or this one:
+
+```
+npx parcel build index.html
+```
+
+That folder will contain all the bundle files for our development environment or production environment, depending on what command we use to execute Parcel.
+
+### What is browserlists?
+
+is a configuration file and a tool used in web development to specify the list of target browsers and their versions that your web application or project should support.
+
+## Notes from Episode 02 - Ignite Our App
+
+### What do you need to do before pushing your code to production?
+  
+Basically you will need to do bundling, code splitting, chunking, image optimization, removing comments, minifying the code, compressing the code; you'll need to do a lot of things.
 
 **When you create a react app it has all the superpowers, so, it is already ignited, it creates schedule for you, it gives you a basic react app which is already production ready.**
 
@@ -207,7 +465,7 @@ npx parcel index.html. It generates a build development of our project and put t
 
 ### What is npx?
 
-Similar as npm we has something called npx, and npx means executing a package. In this case we told Parcel to execute and we put our src, in this case was index.html to serve as an entry point for our web application. Parcel uses this file to build and bundle our application, then starts a development server to host our bundled application and provides a local URL.
+Similar as npm we have something called npx, and npx means executing a package. In this case we told Parcel to execute and we put our src, in this case was index.html to serve as an entry point for our web application. Parcel uses this file to build and bundle our application, then starts a development server to host our bundled application and provides a local URL.
 
 ### It is a good way to bring React into our project through CDN links? Why?
 
