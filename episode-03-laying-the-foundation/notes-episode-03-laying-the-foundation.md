@@ -1,4 +1,41 @@
-- [Notes from episode 03 - Laying the Foundation](#what-means-npx-parcel-indexhtml) - [What means npx parcel index.html?](#what-means-npx-parcel-indexhtml) - [How we can create a script build for development and for production?](#how-we-can-create-a-script-build-for-development-and-for-production) - [What are DOM elements?](#what-are-dom-elements)
+- [Theory](#theory)
+  - [What is JSX?](#what-is-jsx)
+  - [What are the superpowers of JSX?](#what-are-the-superpowers-of-jsx)
+  - [Role of type attribute in script tag? What options can I use there?](#role-of-type-attribute-in-script-tag-what-options-can-i-use-there)
+- [Notes from episode 03 - Laying the Foundation](#what-means-npx-parcel-indexhtml)
+  - [What means npx parcel index.html?](#what-means-npx-parcel-indexhtml)
+  - [How we can create a script build for development and for production?](#how-we-can-create-a-script-build-for-development-and-for-production)
+  - [What are DOM elements?](#what-are-dom-elements)
+
+## Theory
+
+### What is JSX?
+
+JSX help us build applications easier. JSX is not part of React. It's kind of a combination of HTML and JavaScript.
+
+### What are the superpowers of JSX?
+
+In JSX if you write curly braces, inside the curly braces you can run any piece of JavaScript expression. So, you can write any JavaScript expression.
+
+### Role of type attribute in script tag? What options can I use there?
+
+- "text/javascript": This indicates a classic JavaScript script.
+
+- "module": This is used to indicate that the script is an ES6 module. ES6 modules allow for better organization and encapsulation of code.
+
+- "importmap": This is used when you're specifying an import map for JavaScript modules. Import maps are used to control how modules are resolved and loaded.
+
+- "application/json": You can use this to embed JSON data within a script tag. This is useful when you want to include JSON data in your HTML and access it using JavaScript.
+
+- "text/html": While less common, you can embed HTML code within a script tag when you need to insert HTML dynamically into your web page.
+
+### {TitleComponent} vs <TitleComponent/> vs <TitleComponent></TitleComponent> in JSX
+
+- <TitleComponent/>: This is called a self-closing or void element. In React, it's typically used for stateless functional components when there are no child elements or content to be passed within the component.
+
+- <TitleComponent></TitleComponent>: This is the standard way to define and nest components in React. You create an opening <TitleComponent> tag and a closing </TitleComponent> tag, and any content or child components are placed between them.
+
+- {TitleComponent()}: This is not a typical way to nest components in React. In React, components are usually defined as classes or functions, and you use angle brackets (e.g., <TitleComponent />) or the function name (e.g., Title()) to render them.
 
 ## Notes from Episode 03 - Laying the Foundation
 
@@ -85,7 +122,7 @@ React developers realized that if we're going to create an h1 tag or divs and sp
 
 ### What is JSX?
 
-JSX is a different syntax which is easier to create React elements. A lot of developers think that JSX is part of React and that's not true, JSX is different. We can write React without JSX also, I can build big applications without using JSX but JSX makes our development life easier, and that's why we use JSX. So we came to a conclussion that JSX is separte from React. JSX is HTML-like or XML-like syntax.
+JSX is a different syntax which is easier to create React elements. A lot of developers think that JSX is part of React and that's not true, JSX is different. We can write React without JSX also, I can build big applications without using JSX but JSX makes our development life easier, and that's why we use JSX. So we came to a conclussion that JSX is separate from React. JSX is HTML-like or XML-like syntax.
 
 ### How did we use to build our app before any library or framework came out to the market?
 
@@ -403,7 +440,7 @@ const HeadingComponent = () => (
 
 The Title component was inserted two times but differently, and it won't show any change in our browser, it will still be the same. So, those two types of inserting components are the same.
 
-We can also achieved the same by doing this:
+We can also achieve the same by doing this:
 
 ```js
 const Title = () => (

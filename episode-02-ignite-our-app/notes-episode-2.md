@@ -139,7 +139,7 @@ So, for the function we got our Person object and for our arrow function we got 
 
 This is happening because of the same reason as the object method. The arrow function doesn't create its own execution context, so, it uses the this keyword outside its scope.
 
-3. Constructor dunctions.
+3. Constructor functions.
 
 **Example:**
 
