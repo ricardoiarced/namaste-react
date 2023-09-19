@@ -6,6 +6,34 @@
   - [What means npx parcel index.html?](#what-means-npx-parcel-indexhtml)
   - [How we can create a script build for development and for production?](#how-we-can-create-a-script-build-for-development-and-for-production)
   - [What are DOM elements?](#what-are-dom-elements)
+  - [What are React elements?](#what-are-react-elements)
+  - [How can we know if something is happening with our rendering using plain React?](#how-can-we-know-if-something-is-happening-with-our-rendering-using-plain-react)
+  - [Why JSX was created?](#why-jsx-was-created)
+  - [How did we use to build our app before any library or framework came out to the market?](#how-did-we-use-to-build-our-app-before-any-library-or-framework-came-out-to-the-market)
+  - [What does JSX try improve?](#what-does-jsx-try-improve)
+  - [Do we write code for humans or machines?](#do-we-write-code-for-humans-or-machines)
+  - [How do we render JSX to our browser?](#how-do-we-render-jsx-to-our-browser)
+  - [Does the JSX syntax we wrote before is valid JavaScript?](#does-the-jsx-syntax-we-wrote-before-is-valid-javascript)
+  - [If we put the same code stored in jsxHeading inside our developer console will throw an error?](#if-we-put-the-same-code-stored-in-jsxheading-inside-our-developer-console-will-throw-an-error)
+  - [Why then is working our code inside the browser?](#why-then-is-working-our-code-inside-the-browser)
+  - [What means transpile?](#what-means-transpile)
+  - [Does ReactDOM understand whatever you pass to root.render?](#does-reactdom-understand-whatever-you-pass-to-rootrender)
+  - [Parcel do all everything by itself?](#parcel-do-all-everything-by-itself)
+  - [What's Babel?](#whats-babel)
+  - [How does JSX work?](#how-does-jsx-work)
+  - [Differences between JSX and HTML](#differences-between-jsx-and-html)
+  - [If you have to give attributes on JSX how will you do that?](#if-you-have-to-give-attributes-on-jsx-how-will-you-do-that)
+  - [What will we need to do if we want to write JSX in multiple lines instead of one line?](#what-will-we-need-to-do-if-we-want-to-write-jsx-in-multiple-lines-instead-of-one-line)
+  - [What is a React component?](#what-is-a-react-component)
+  - [Why do we need to start with a capital letter when creating a component in React?](#why-do-we-need-to-start-with-a-capital-letter-when-creating-a-component-in-react)
+  - [How do we create a functional component?](#how-do-we-create-a-functional-component)
+  - [How can we render a React functional component?](#how-can-we-render-a-react-functional-component)
+  - [How do we render a component inside another component?](#how-do-we-render-a-component-inside-another-component)
+  - [Can we create functional components using a function expression?](#can-we-create-functional-components-using-a-function-expression)
+  - [Can we put a component inside a React element?](#can-we-put-a-component-inside-a-react-element)
+  - [Example of a malicious API](#example-of-a-malicious-api)
+  - [Types of syntax for a nested component](#types-of-syntax-for-a-nested-component)
+  - [Why your React code is readable?](#why-your-react-code-is-readable)
 
 ## Theory
 
@@ -86,7 +114,7 @@ Are HTML elements.
 
 ### What are React elements?
 
-Are kind of the same as DOM elements but it is an object.
+Are kind of the same as DOM elements but they are objects.
 
 ```js
 const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
@@ -112,7 +140,7 @@ root.render(heading);
 
 So when we add this line and run our app, ReactDOM takes the object created by React.createElement and pushes to the browser. So it will put inside the root id element whatever we render from root.render, and if there were something inside the root id element before rendering something in our HTML, it will replace whatever it is at that moment.
 
-### How we can know if something is happening with our rendering using plain React?
+### How can we know if something is happening with our rendering using plain React?
 
 Inside the root id element, it is a best practice to put an h1 or something to write 'Not rendered', so if there were a bug in your react code or the rendered is not happening for some reason you will see in your screen 'Not rendered'. And when you fix the problem, you'll see whatever you use to replace 'Not rendered' with.
 
@@ -340,7 +368,7 @@ const Title = function () {
 
 But Akshay says that the industry standard is to use arrow functions now.
 
-### What is the superpowers of JSX?
+### What are the superpowers of JSX?
 
 In JSX if you write curly braces, inside the curly braces you can run any piece of JavaScript expression. So, you can write any JavaScript expression.
 
