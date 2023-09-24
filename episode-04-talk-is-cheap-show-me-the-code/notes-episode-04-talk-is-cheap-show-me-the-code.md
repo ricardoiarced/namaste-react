@@ -33,8 +33,137 @@ var Greeting = createReactClass({
 
 If you want to comment something in JSX you need to use JavaScript comments inside of Curly braces like:
 
-````js
-{/*comment here*/}
+```js
+{
+  /*comment here*/
+}
+```
+
+### What is <React.Fragment></React.Fragment> and <></>?
+
+A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+
+Example:
+
+```js
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+}
+```
+
+And the short syntax is this:
+
+```js
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+}
+```
+
+### What is the virtual DOM?
+
+The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM.
+
+### What is reconciliation in React?
+
+Reconciliation in React is the process by which React updates the user interface to match the most recent changes in the application's state. It's a critical part of React's virtual DOM (Document Object Model) diffing algorithm, which efficiently determines what needs to be updated in the actual DOM to reflect the current state of the application.
+
+Reconciliation is the algorithm behind what is popularly understood as the "virtual DOM." A high-level description goes something like this: when you render a React application, a tree of nodes that describes the app is generated and saved in memory. This tree is then flushed to the rendering environment — for example, in the case of a browser application, it's translated to a set of DOM operations. When the app is updated (usually via setState), a new tree is generated. The new tree is diffed with the previous tree to compute which operations are needed to update the rendered app.
+
+### What is React Fiber?
+
+React Fiber is a reimplementation of React's core algorithm.
+
+The goal of React Fiber is to increase its suitability for areas like animation, layout, and gestures. Its headline feature is incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames.
+
+### Why do we need keys in React? When do we need keys in React?
+
+Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity. We need keys when we need to show dynamic data in our app.
+
+### Can we use index as keys in React?
+
+Yes, we can use them, but use them as the last resort. It's not recommended to use the indexes for keys if the order of items may change. So that can impact performance a lot and may cause issues with component state.
+
+### What is props in React?
+
+Props stands for properties and is an object that you can pass in as an argument to a function to return a React element. Those functions are called function components because they are literally JavaScript functions.
+
+### Ways to pass in props
+
+We can pass them like this:
+
+```js
+const RestaurantCard = (props) => {
+  return (
+    <div className="res-card" style={styleCard}>
+      <img
+        className="res-img"
+        alt="res-card"
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/c9elzh8awx7jcx70cood"
+      />
+      <h3>{props.resName}</h3>
+      <h4>{props.cuisine}</h4>
+      <h4>4.4 stars</h4>
+      <h4>38 minutes</h4>
+    </div>
+  );
+};
+
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestaurantCard resName="foods" cuisine="Biryani" />
+        <RestaurantCard resName="KFC" cuisine="burguer, fast food" />
+      </div>
+    </div>
+  );
+};
+```
+
+Or we can use destructuring:
+
+```js
+const RestaurantCard = ({ resName, cuisine }) => {
+  return (
+    <div className="res-card" style={styleCard}>
+      <img
+        className="res-img"
+        alt="res-card"
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/c9elzh8awx7jcx70cood"
+      />
+      <h3>{resName}</h3>
+      <h4>{cuisine}</h4>
+      <h4>4.4 stars</h4>
+      <h4>38 minutes</h4>
+    </div>
+  );
+};
+
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestaurantCard resName="foods" cuisine="Biryani" />
+        <RestaurantCard resName="KFC" cuisine="burguer, fast food" />
+      </div>
+    </div>
+  );
+};
 ```
 
 ## Notes from Episode 04 - Talk is cheap, show me the code
@@ -74,7 +203,7 @@ const RestaurantCard = () => {
     </div>
   );
 };
-````
+```
 
 Or we can change it to this:
 
@@ -109,8 +238,8 @@ const RestaurantCard = (props) => {
         alt="res-card"
         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/c9elzh8awx7jcx70cood"
       />
-      <h3>Name Foods</h3>
-      <h4>Biryani, North Indian, Asian</h4>
+      <h3>{props.resName}</h3>
+      <h4>{props.cuisine}</h4>
       <h4>4.4 stars</h4>
       <h4>38 minutes</h4>
     </div>
