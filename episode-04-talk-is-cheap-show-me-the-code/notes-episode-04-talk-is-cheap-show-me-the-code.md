@@ -1,3 +1,34 @@
+# Namaste React - Episode 1
+
+## Table of contents
+
+- [Theory](#theory)
+  - [Is JSX mandatory for React?](#is-jsx-mandatory-for-react)
+  - [Is ES6 mandatory for React?](#is-es6-mandatory-for-react)
+  - [How can we write comments in JSX?](#how-can-we-write-comments-in-jsx)
+  - [What is <React.Fragment></React.Fragment> and <></>?](#what-is-reactfragmentreactfragment-and)
+  - [What is the virtual DOM?](#what-is-the-virtual-dom)
+  - [What is reconciliation in React?](#what-is-reconciliation-in-react)
+  - [What is React Fiber?](#what-is-react-fiber)
+  - [Why do we need keys in React? When do we need keys in React?](#why-do-we-need-keys-in-react-when-do-we-need-keys-in-react)
+  - [Can we use index as keys in React?](#can-we-use-index-as-keys-in-react)
+  - [What is props in React?](#what-is-props-in-react)
+  - [Ways to pass in props](#ways-to-pass-in-props)
+  - [What is Config Driven UI?](#what-is-config-driven-ui)
+- [Notes from episode 04 - Laying the Foundation](#notes-from-episode-04---talk-is-cheap-show-me-the-code)
+  - [How to start thinking about building an app](#how-to-start-thinking-about-building-an-app)
+  - [Why we create components?](#why-we-create-components).
+  - [How many ways are to write CSS?](#how-many-ways-are-to-write-css)
+  - [How can we make our cards components dynamic?](#how-can-we-make-our-cards-components-dynamic)
+  - [Using destructuring](#using-destructuring)
+  - [Config Driven UI concept (Swiggy app used it to create their website)](#config-driven-ui-concept-swiggy-app-used-it-to-create-their-website)
+  - [What does build a frontend application?](#what-does-build-a-frontend-application)
+  - [What happens when you build a large scale application?](#what-happens-when-you-build-a-large-scale-application)
+  - [How is represented data inside an API?](#how-is-represented-data-inside-an-api)
+  - [When you build a production-ready app, what do you need to do?](#when-you-build-a-production-ready-app-what-do-you-need-to-do)
+  - [Best practices](#best-practices)
+  - [Why we need keys?](#why-we-need-keys)
+
 ## Theory
 
 ### Is JSX mandatory for React?
@@ -165,6 +196,10 @@ const Body = () => {
   );
 };
 ```
+
+### What is Config Driven UI?
+
+Is an approach to designing and building user interfaces (UIs) in software applications where the behavior and appearance of the UI elements are defined and controlled through configuration settings or data, rather than hardcoding these aspects into the application's code.
 
 ## Notes from Episode 04 - Talk is cheap, show me the code
 

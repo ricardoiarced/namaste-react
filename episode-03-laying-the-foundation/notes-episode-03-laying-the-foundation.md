@@ -1,8 +1,12 @@
+# Namaste React - Episode 03
+
+## Table of contents
+
 - [Theory](#theory)
   - [What is JSX?](#what-is-jsx)
   - [What are the superpowers of JSX?](#what-are-the-superpowers-of-jsx)
   - [Role of type attribute in script tag? What options can I use there?](#role-of-type-attribute-in-script-tag-what-options-can-i-use-there)
-- [Notes from episode 03 - Laying the Foundation](#what-means-npx-parcel-indexhtml)
+- [Notes from episode 03 - Laying the Foundation](#notes-from-episode-03---laying-the-foundation)
   - [What means npx parcel index.html?](#what-means-npx-parcel-indexhtml)
   - [How we can create a script build for development and for production?](#how-we-can-create-a-script-build-for-development-and-for-production)
   - [What are DOM elements?](#what-are-dom-elements)
