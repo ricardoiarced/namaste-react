@@ -1,4 +1,4 @@
-# Namaste React - Episode 1
+# Namaste React - Episode 04
 
 ## Table of contents
 
