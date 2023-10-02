@@ -2,8 +2,33 @@
 
 ## Table of contents
 
-- [What is the difference between Named Export, Default export and star symbol as export?]()
-- [What is the ]
+- [Theory](#theory)
+  - [What is the difference between Named Export, Default export and star symbol as export?]()
+  - [What is the importance of config.js file?](#what-is-the-importance-of-configjs-file)
+  - [What are React Hooks?](#what-are-react-hooks)
+  - [Why do we need a useState Hook?](#why-do-we-need-a-usestate-hook)
+- [Notes from episode 05 - Let's Get Hooked!](#notes-from-episode-05---lets-get-hooked)
+  - [Why do we need React?](#why-do-we-need-react)
+  - [Why is not a good practice to have a lot of components and lines of code in a single file?](#why-is-not-a-good-practice-to-have-a-lot-of-components-and-lines-of-code-in-a-single-file)
+  - [src folder](#src-folder)
+  - [Visit the React official page to know more about structuring a React project](#visit-the-react-official-page-to-know-more-about-structuring-a-react-project)
+  - [Why some people name their files with the JSX extension?](#why-some-people-name-their-files-with-the-jsx-extension)
+  - [Why React throws an error when you moved the component to its own file instead of keeping it in the same file?](#why-react-throws-an-error-when-you-moved-the-component-to-its-own-file-instead-of-keeping-it-in-the-same-file)
+  - [What to do whenever you have hardcoded data?](#what-to-do-whenever-you-have-hardcoded-data)
+  - [How do we export our harcoded array of objects that we took from the Swiggy API?](#how-do-we-export-our-harcoded-array-of-objects-that-we-took-from-the-swiggy-api)
+  - [There are two types of import and two types of export](#there-are-two-types-of-import-and-two-types-of-export)
+  - [How can we use event handlers in JSX?](#how-can-we-use-event-handlers-in-jsx)
+  - [Why when we use a click event on a button and inside we use a filter method to filter out restaurants that has less than 4 stars the app doesn't update the restaurant cards?](#why-when-we-use-a-click-event-on-a-button-and-inside-we-use-a-filter-method-to-filter-out-restaurants-that-has-less-than-4-stars-the-app-doesnt-update-the-restaurant-cards)
+  - [How is called a React variable?](#how-is-called-a-react-variable)
+  - [What do we use to create a state variable?](#what-do-we-use-to-create-a-state-variable)
+  - [What is a hook in React?](#what-is-a-hook-in-react)
+  - [What are the two most important hooks?](#what-are-the-two-most-important-hooks)
+  - [How do we update the list of restaurants then?](#how-do-we-update-the-list-of-restaurants-then)
+  - [What is render in React?](#what-is-render-in-react)
+  - [Why React is fast?](#why-react-is-fast)
+  - [What is the Reconciliation algorithm?](#what-is-the-reconciliation-algorithm)
+  - [If the interviewer asks you why React is fast?](#if-the-interviewer-asks-you-why-react-is-fast)
+  - [In our app where does the reconciliation algorithm actually start?](#in-our-app-where-does-the-reconciliation-algorithm-actually-start)
 
 ## Theory
 
@@ -73,15 +98,17 @@ The config.js file, or similar configuration files, are commonly used to store c
 
 ### What are React Hooks?
 
-They are JavaScript utility functions which are given to us by React. Allow functional components to have state and side effects which were previously exclusive to class components.
+They are JavaScript utility functions that are given to us by React. Allow functional components to have state and side effects which were previously exclusive to class components.
 
 ### Why do we need a useState Hook?
 
-We need it to create a super powerful state variable in React. And it's called a state variable because it maintains the state of your component. So, with that, whenever the state variable changes and make a call to the updater function, React schedules an update to the component. Then the process of Reconciliation starts and the diffing algorithm compares the new and old virtual DOM trees to determine the minimum number of changes needed to update the UI. Based on that, React determines which parts of the UI need to be re-rendered.
+We need it to create a super powerful state variable in React. It's called a state variable because it maintains the state of your component. So, with that, whenever the state variable changes and the updater function is called, React schedules an update to the component. Then the process of Reconciliation starts and the diffing algorithm compares the new and old virtual DOM trees to determine the minimum number of changes needed to update the UI. Based on that, React determines which parts of the UI need to be re-rendered.
 
 Everything that React does, you can have the same result using JavaScript, HTML and CSS.
 
-### Why we need React?
+## Notes from episode 05 - Let's Get Hooked!
+
+### Why do we need React?
 
 When we use React or another library or framework it makes our development experience easier. It makes you write less code and do more on the web page.
 
