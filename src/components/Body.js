@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
+  const [originalListOfRestaurants, setOriginalListOfRestaurants] = useState(
+    []
+  );
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
@@ -20,12 +23,16 @@ const Body = () => {
     const json = await data.json();
 
     console.log(json);
+
+    setOriginalListOfRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
     setListOfRestaurants(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
-  return listOfRestaurants?.length === 0 ? (
+  return originalListOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -44,6 +51,15 @@ const Body = () => {
               // filter the restaurant cards and update the UI
               // searchText
               console.log(searchText);
+
+              const filteredRestaurant = originalListOfRestaurants.filter(
+                (restaurant) =>
+                  restaurant.info.name
+                    .toLowerCase()
+                    .includes(searchText.toLowerCase())
+              );
+              console.log(filteredRestaurant);
+              setListOfRestaurants(filteredRestaurant);
             }}
           >
             Search
@@ -52,7 +68,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = listOfRestaurants.filter(
+            const filteredList = originalListOfRestaurants.filter(
               (res) => res.info.avgRating > 4
             );
             setListOfRestaurants(filteredList);

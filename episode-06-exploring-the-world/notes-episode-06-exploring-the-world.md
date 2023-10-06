@@ -426,3 +426,86 @@ With this tweak our search bar will work now, so we can type now. We bound the s
 Behind the scenes as soon as we write something, a letter and then another letter, we're changing our state variable searchText on every key press. **Remember this: Whenever you change a local state variable in our case is searchText React rerenders the component, so in every key press React rerenders the Body component**
 
 **Whenever a state variable updates or changes, React triggers a reconciliation cycle (re-renders the component)**
+
+### How to filter out when clicking the button search?
+
+```js
+const Body = () => {
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  console.log("Body rendered");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const json = await data.json();
+
+    console.log(json);
+    setListOfRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  return listOfRestaurants?.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div className="body">
+      <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              // filter the restaurant cards and update the UI
+              // searchText
+              console.log(searchText);
+
+              const filteredRestaurant = listOfRestaurants.filter(
+                (restaurant) =>
+                  restaurant.info.name.toLowerCase().includes(searchText)
+              );
+
+              setListOfRestaurants(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.info.avgRating > 4
+            );
+            setListOfRestaurants(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+      <div className="res-container">
+        {listOfRestaurants?.map((restaurant) => (
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+The code above has the implementation to filter out restaurants based on our search when we click the button search.
+
+**People who code slow doesn't need to debug their code or they spend just little time debugging. And the people who code fast will take a lot of time to debug**
