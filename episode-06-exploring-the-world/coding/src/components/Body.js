@@ -1,6 +1,6 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard from "../RestaurantCard";
 import { useState, useEffect } from "react";
-import Shimmer from "./Shimmer";
+import Shimmer from "../Shimmer";
 
 const Body = () => {
   const [originalListOfRestaurants, setOriginalListOfRestaurants] = useState(
