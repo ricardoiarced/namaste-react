@@ -30,23 +30,6 @@ const Body = () => {
     setListOfRestaurants(
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-
-    const url =
-      "https://realtor.p.rapidapi.com/locations/v2/auto-complete?input=new%20york&limit=10";
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
-        "X-RapidAPI-Host": "realtor.p.rapidapi.com",
-      },
-    };
-    try {
-      const data1 = await fetch(url, options);
-      const json1 = await data1.json();
-      console.log(json1);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return originalListOfRestaurants?.length === 0 ? (

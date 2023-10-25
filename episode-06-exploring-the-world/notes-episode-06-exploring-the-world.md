@@ -30,6 +30,7 @@
   - [Input](#input)
   - [What is happening when we type letter by letter in our search bar?](#what-is-happening-when-we-type-letter-by-letter-in-our-search-bar)
   - [How to filter out when clicking the button search?](#how-to-filter-out-when-clicking-the-button-search)
+
 ## Theory
 
 ### What is a microservice?
@@ -124,17 +125,18 @@ useEffect(() => {
 
 ### What is optional chaining?
 
-is an operator represented by the question mark ('?') that allows you to access properties or methods of an object without explicitly checking if each level of the nested structure exists. This is particularly useful when dealing with nested objects or accessing properties that might be undefined or null.
+Is an operator represented by the question mark ('?') that allows you to access properties or methods of an object without explicitly checking if each level of the nested structure exists. This is particularly useful when dealing with nested objects or accessing properties that might be undefined or null.
 
 ```js
 // Without optional chaining
-if (obj && obj.property && obj.property.subproperty) {
-  // Access obj.property.subproperty safely
+if (obj && obj.property && obj.property.method) {
+  // do something with obj.property.method
+} else {
+  // handle the case where obj, obj.property, or obj.property.method is null or undefined
 }
 
 // With optional chaining
-const value = obj?.property?.subproperty;
-// If obj, obj.property, or obj.property.subproperty is undefined or null, value will be undefined
+const result = obj?.property?.method; // If any of obj, obj.property, or obj.property.method is null or undefined, result will be undefined
 ```
 
 ### What is Shimmer UI?
@@ -161,7 +163,7 @@ if (sum === 5) {
 
 ### What is conditional rendering?
 
-is the process of rendering different content or components based on certain conditions. It allows you to control what is displayed to the user based on the state of your application or other variables.
+Is the process of rendering different content or components based on certain conditions. It allows you to control what is displayed to the user based on the state of your application or other variables.
 
 ```js
 import React, { useState } from "react";
